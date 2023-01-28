@@ -11,24 +11,27 @@ import java.io.IOException;
 *
 * @author Anni Peura
 */
-class ContactsApp {
+public class ContactsApp {
     static Console c = System.console();
     static private ArrayList<Person> contactDetails = new ArrayList<Person>();
     /**
     * main method runs methods to synch up information, present main menu
     * and take user's initial feed to use the application. if no text file
     * exists one is created
+    *
+    * @param args default parameter for main method
     */
     public static void main (String[] args) {
         Path filePath = Paths.get("./contact_data.txt");
         if (!Files.exists(filePath)) {
-            try { 
+            try {    
                 Files.createFile(filePath);        
-             }
+            }
             catch (IOException e) {
                 e.printStackTrace();
             }
-        } 
+        }        
+
         listSynch();
         printMainMenu(); 
         userChoice(userInputMenu());
@@ -193,26 +196,26 @@ class ContactsApp {
             System.out.println("Please make desired changes to contact");
 
             System.out.println("id: (mandatory, form of DDMMYYAXXXX)");
-            String idNumber = readInputString();
+            String idNumber = c.readLine();
             contactDetails.get(index).setId(idNumber);
             System.out.println("firstname? (mandatory)");
-            String firstname = readInputString();
+            String firstname = c.readLine();
             contactDetails.get(index).setFirstName(firstname);
             System.out.println("lastname? (mandatory)");
-            String lastname = readInputString();
+            String lastname = c.readLine();
             contactDetails.get(index).setLastName(lastname);
             System.out.println("phonenumber? (mandatory)");
-            String phonenumber = readInputString();
+            String phonenumber = c.readLine();
             contactDetails.get(index).setPhoneNumber(phonenumber);
             System.out.println("email?");
-            String email = readInputString();
+            String email = c.readLine();
             if(email.trim().isEmpty()) {
                 contactDetails.get(index).setEmail("-");
             } else {
                 contactDetails.get(index).setEmail(email);
             }
             System.out.println("address?");
-            String address = readInputString();
+            String address = c.readLine();
             if(address.trim().isEmpty()) {
                 contactDetails.get(index).setAddress("-");
             } else {
@@ -224,31 +227,32 @@ class ContactsApp {
         }
     } 
     /**
-    * method used for adding a new contact
+    * method used for adding a new contact with mandatory details (id, first 
+    * name, last name, phone number) and optional details (email and address)
     */
     public static void addNewContact() {
         Person x = new Person();
         System.out.println("id? (mandatory, form of DDMMYYAXXXX)");
-        String idNumber = readInputString();
+        String idNumber = c.readLine();
         x.setId(idNumber);
         System.out.println("firstname? (mandatory)");
-        String firstname = readInputString();
+        String firstname = c.readLine();
         x.setFirstName(firstname);
         System.out.println("lastname? (mandatory)");
-        String lastname = readInputString();
+        String lastname = c.readLine();
         x.setLastName(lastname);
         System.out.println("phonenumber? (mandatory)");
-        String phonenumber = readInputString();
+        String phonenumber = c.readLine();
         x.setPhoneNumber(phonenumber);
         System.out.println("email?");
-        String email = readInputString();
+        String email = c.readLine();
         if(email.trim().isEmpty()) {
             x.setEmail("-");
         } else {
             x.setEmail(email);
         }
         System.out.println("address?");
-        String address = readInputString();
+        String address = c.readLine();
         if(address.trim().isEmpty()) {
             x.setAddress("-");
         } else {
@@ -258,10 +262,6 @@ class ContactsApp {
         saveToContactBook();
         System.out.println("        Contact saved!");
     }
-    public static String readInputString() {
-        String userInformation = c.readLine();
-        return userInformation;
-    }
     /**
     * method used for saving array list data to a text file
     */
@@ -270,9 +270,6 @@ class ContactsApp {
         String data = contactDetails.toString();
         String editedLines = data.replaceAll("[\\[\\]]", "");
         try {
-            if (!Files.exists(filePath)) {
-                Files.createFile(filePath);
-        }
             Files.writeString(filePath, editedLines);
         }
         catch (IOException e) {
@@ -317,6 +314,7 @@ class Person {
     static protected String address;
     /**
     * Turns every Person's data to a String, divided with ",,,"
+    *
     * @return a string of the person's information divided with ",,,"
     */
     @Override
@@ -331,6 +329,7 @@ class Person {
     /**
     * setId contains set method for id which is validated to MMDDYYAXXX format, 
     * if user's feed is invalid throws IllegalArgumentException
+    *
     * @throws IllegalArgumentException if input doesn't match pattern
     * @param n is the String setId validates 
     */
@@ -345,6 +344,7 @@ class Person {
     }
     /**
     * getId contains get method for id
+    *
     * @return method returns id 
     */
     public static String getId() {
@@ -353,6 +353,7 @@ class Person {
     /**
     * setFirstName contains setter for first name, if user's feed is less than 2 
     * or more than 20 characters throws IllegalArgumentException
+    *
     * @throws IllegalArgumentException if input is not 2-20 characters
     * @param n is the String setFirstName validates 
     */
@@ -365,6 +366,7 @@ class Person {
     }
     /**
     * getfirstName contains get method for first name
+    *
     * @return method returns first name
     */
     public static String getFirstName() {
@@ -373,6 +375,7 @@ class Person {
     /**
     * setLastName contains set method for last name, if user's feed is less than 
     * 2 or more than 20 characters throws IllegalArgumentException
+    *
     * @throws IllegalArgumentException if input is not 2-20 characters
     * @param n is the String setLastName validates 
     */
@@ -385,6 +388,7 @@ class Person {
     }
     /**
     * getLastName contains get method for last name
+    *
     * @return method returns last name
     */
     public static String getLastName() {
@@ -393,6 +397,7 @@ class Person {
     /**
     * setPhoneNumber contains set method for phone number, if user's feed is 
     * doesn't match the pattern throws IllegalArgumentException
+    *
     * @throws IllegalArgumentException if input doesn't match the pattern
     * @param n is the String setPhoneNumber validates 
     */
@@ -406,6 +411,7 @@ class Person {
     }    
     /**
     * getLastName contains get method for phone number
+    *
     * @return method returns phone number
     */
     public static String getPhoneNumber() {
@@ -414,6 +420,7 @@ class Person {
     /**
     * setEmail contains set method for email, if user's feed is more than 50
     * characters throws IllegalArgumentException
+    *
     * @throws IllegalArgumentException if input is not less than 50 characters
     * @param n is the String setEmail validates 
     */
@@ -426,6 +433,7 @@ class Person {
     }
     /**
     * getLastName contains get method for email
+    *
     * @return method returns email
     */
     public static String getEmail() {
@@ -434,6 +442,7 @@ class Person {
     /**
     * setAddress contains set method for address, if user's feed is more than 50
     * characters throws IllegalArgumentException
+    *
     * @throws IllegalArgumentException if input is not less than 50 characters
     * @param n is the String setAddress validates 
     */
@@ -446,6 +455,7 @@ class Person {
     }
     /**
     * getAddress contains get method for address
+    *
     * @return method returns address
     */
     public static String getAddress() {

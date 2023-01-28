@@ -16,7 +16,8 @@ class ContactsApp {
     static private ArrayList<Person> contactDetails = new ArrayList<Person>();
     /**
     * main method runs methods to synch up information, present main menu
-    * and take user's initial feed to use the application
+    * and take user's initial feed to use the application. if no text file
+    * exists one is created
     */
     public static void main (String[] args) {
         Path filePath = Paths.get("./contact_data.txt");

@@ -19,8 +19,9 @@ class ContactsApp {
     * and take user's initial feed to use the application
     */
     public static void main (String[] args) {
-        if (!Files.exists("./contact_data.txt")) {
-            Files.createFile("./contact_data.txt");
+        Path filePath = Paths.get("./contact_data.txt");
+        if (!Files.exists(filePath)) {
+            Files.createFile(filePath);
         }
         listSynch();
         printMainMenu(); 

@@ -260,6 +260,9 @@ class ContactsApp {
         String data = contactDetails.toString();
         String editedLines = data.replaceAll("[\\[\\]]", "");
         try {
+            if (!Files.exists(filePath)) {
+                Files.createFile(filePath);
+        }
             Files.writeString(filePath, editedLines);
         }
         catch (IOException e) {

@@ -37,7 +37,7 @@ public class ContactsApp {
         userChoice(userInputMenu());
     }
     /**
-    * printMainMenu prints out choices user has to use the application
+    * prints out main menu choices user has to use the application
     */
     public static void printMainMenu() {
         System.out.println();
@@ -53,7 +53,7 @@ public class ContactsApp {
         System.out.println();
     }
     /**
-    * printContactBookMenu prints out choices to quit or return to main menu
+    * prints out choices to quit or return to main menu
     */
     public static void printContactBookMenu() {
         System.out.println();
@@ -63,7 +63,7 @@ public class ContactsApp {
         userChoice(userInputMenu());
     }
     /**
-    *  prints out choices to quit or return to main menu
+    * prints out choices to quit or return to main menu
     */
     public static void printContactBook() {
         for(int i = 0; i < contactDetails.size(); i++) {
@@ -102,7 +102,7 @@ public class ContactsApp {
         return userChoice;
     }
     /**
-    * switch-case operating via int, runs method based on received feed
+    * runs different methods based on received feed
     *
     * @param command is int received from userInputMenu (0-5)
     */
@@ -132,7 +132,7 @@ public class ContactsApp {
     }
     /**
     * method used for choosing a contact, user inputs id and method seeks it
-    * from exsisting data
+    * from existing data
     *
     * @return returns -5 if contact's not found otherwise returns target's index
     */

@@ -21,8 +21,13 @@ class ContactsApp {
     public static void main (String[] args) {
         Path filePath = Paths.get("./contact_data.txt");
         if (!Files.exists(filePath)) {
-            Files.createFile(filePath);
-        }
+            try { 
+                Files.createFile(filePath);        
+             }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        } 
         listSynch();
         printMainMenu(); 
         userChoice(userInputMenu());

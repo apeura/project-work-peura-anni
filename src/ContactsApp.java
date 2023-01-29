@@ -30,8 +30,7 @@ public class ContactsApp {
             catch (IOException e) {
                 e.printStackTrace();
             }
-        }        
-
+        }
         listSynch();
         printMainMenu(); 
         userChoice(userInputMenu());
@@ -102,7 +101,7 @@ public class ContactsApp {
         return userChoice;
     }
     /**
-    * runs different methods based on received feed
+    * switch-case operating via int, runs method based on received feed
     *
     * @param command is int received from userInputMenu (0-5)
     */
@@ -158,6 +157,9 @@ public class ContactsApp {
         if(index == -5){
             System.out.println("no matching target found!"); 
         } else {
+            System.out.println(contactDetails.get(index).getFirstName() + " " + 
+            contactDetails.get(index).getLastName());
+
             String originalId = contactDetails.get(index).getId();
             Iterator<Person> searchedId = contactDetails.iterator();
             while(searchedId.hasNext()) {
@@ -179,20 +181,18 @@ public class ContactsApp {
         if(index == -5){
             System.out.println("no matching target found!"); 
         } else {
-            for(int i = 0; i < contactDetails.size(); i++) {
-                System.out.println("ID: " + contactDetails.get(i).getId());
-                System.out.println("Name: " 
-                + contactDetails.get(i).getFirstName() + " " + 
-                contactDetails.get(i).getLastName());
-                System.out.println("Phone Number: " + 
-                contactDetails.get(i).getPhoneNumber());
-                System.out.println("Email address: " + 
-                contactDetails.get(i).getEmail());
-                System.out.println("Address: " + 
-                contactDetails.get(i).getAddress());
-                System.out.println();
-            }
-            String originalId = contactDetails.get(index).getId();
+            System.out.println("ID: " + contactDetails.get(index).getId());
+            System.out.println("Name: " 
+            + contactDetails.get(index).getFirstName() + " " + 
+            contactDetails.get(index).getLastName());
+            System.out.println("Phone Number: " + 
+            contactDetails.get(index).getPhoneNumber());
+            System.out.println("Email address: " + 
+            contactDetails.get(index).getEmail());
+            System.out.println("Address: " + 
+            contactDetails.get(index).getAddress());
+            System.out.println();
+            
             System.out.println("Please make desired changes to contact");
 
             System.out.println("id: (mandatory, form of DDMMYYAXXXX)");
@@ -222,7 +222,6 @@ public class ContactsApp {
                 contactDetails.get(index).setAddress(address);
             }
             saveToContactBook();
-            listSynch();
             System.out.println("Contact updated!"); 
         }
     } 

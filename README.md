@@ -6,3 +6,4 @@ ContactsApp stores contact details in a text file. User may view, edit, delete a
 
 Run application by using the following command: cd src/ && javac *.java && java ContactsApp 
 
+Walkthrough: https://www.youtube.com/watch?v=wNy50NNgWXQ

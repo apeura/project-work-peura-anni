@@ -94,7 +94,7 @@ public class ContactsApp {
             System.out.println();    
             System.out.println("Error: Invalid input, answer must be a number");
         }
-        if (userChoice < 0 || userChoice > 9) {
+        if (userChoice < 0 || userChoice > 5) {
             System.out.println("Input a number within the given options");
             printMainMenu();
             return userInputMenu();
